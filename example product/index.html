@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bili napo kayo</title>
+</head>
+<body>
+    <header>
+        <h1> Welcome To Our Flower Bouquet Store</h1>
+        <div class="cart">
+            Cart (<span id="cartCount">0</span>) | Total: $<span id="totalCost">0.00</span>
+        </div>
+    </header>
+    
+    <main>
+        <section class="products">
+            <div class="product">
+                <h2>Roses</h2>
+                <img src="Roses.jpg" height="200" width="200" alt="Roses" onclick="showDescription('Roses', 'These are beautiful red roses. Perfect for any occasion!')"/>
+                <p>$340</p>
+                <button onclick="addToCart('Roses', 340)">Add to Cart</button>
+                <div class="product-description" id="roses-description" style="display: none;"></div>
+            </div>
+            <div class="product">
+                <h2>Tulips</h2>
+                <img src="Tulips.jpg" height="200" width="200" alt="Tulips" onclick="showDescription('Tulips', 'Fresh tulips in various colors. A bright and cheerful gift!')"/>
+                <p>$360</p>
+                <button onclick="addToCart('Tulips', 360)">Add to Cart</button>
+                <div class="product-description" id="tulips-description" style="display: none;"></div>
+            </div>
+            <div class="product">
+                <h2>Sunflower</h2>
+                <img src="Sunflower.jpg" height="200" width="200" alt="Sunflower" onclick="showDescription('Sunflower', 'Sunny and bright sunflowers. Bring warmth to any room!')"/>
+                <p>$470</p>
+                <button onclick="addToCart('Sunflower', 470)">Add to Cart</button>
+                <div class="product-description" id="sunflower-description" style="display: none;"></div>
+            </div>
+            <div class="product">
+                <h2>Daisies</h2>
+                <img src="Daisies.jpg" height="200" width="200" alt="Daisies" onclick="showDescription('Daisies', 'A lovely bouquet of daisies. Perfect for any day!')"/>
+                <p>$580</p>
+                <button onclick="addToCart('Daisies', 580)">Add to Cart</button>
+                <div class="product-description" id="daisies-description" style="display: none;"></div>
+            </div>
+            <div class="product">
+                <h2>Coral Bliss</h2>
+                <img src="Coral Bliss.jpg" height="200" width="200" alt="Coral Bliss" onclick="showDescription('Coral Bliss', 'A Coral Bliss bouquet, known for its unique charm and elegance.')"/>
+                <p>$860</p>
+                <button onclick="addToCart('Coral Bliss', 860)">Add to Cart</button>
+                <div class="product-description" id="coral-bliss-description" style="display: none;"></div>
+            </div>
+            <div class="product">
+                <h2>Ashley Red Rose</h2>
+                <img src="Ashley Red Rose Bouquet.jpg" height="200" width="200" alt="Ashley Red Rose" onclick="showDescription('Ashley Red Rose', 'A bouquet of Ashley Red Rose with stems of Eucalyptus Cinerea makes the perfect romantic bouquet.')"/>
+                <p>$690</p>
+                <button onclick="addToCart('Ashley Red Rose', 690)">Add to Cart</button>
+                <div class="product-description" id="ashley-red-rose-description" style="display: none;"></div>
+            </div>
+            <div class="product">
+                <h2>Orchid</h2>
+                <img src="Orchid flower.jpg" height="200" width="200" alt="Orchid" onclick="showDescription('Orchid', 'A beautiful Orchid bouquet, delicate and exotic.')"/>
+                <p>$780</p>
+                <button onclick="addToCart('Orchid', 780)">Add to Cart</button>
+                <div class="product-description" id="orchid-description" style="display: none;"></div>
+            </div>
+            <div class="product">
+                <h2>Pink Blush</h2>
+                <img src="Pink Blush.jpg" height="200" width="200" alt="Pink Blush" onclick="showDescription('Pink Blush', 'A delicate Pink Blush bouquet, elegant and graceful.')"/>
+                <p>$550</p>
+                <button onclick="addToCart('Pink Blush', 550)">Add to Cart</button>
+                <div class="product-description" id="pink-blush-description" style="display: none;"></div>
+            </div>
+            <div class="product">
+                <h2>Dozen Pink</h2>
+                <img src="Dozen Pink Roses.jpg" height="200" width="200" alt="Dozen Pink" onclick="showDescription('Dozen Pink', 'A Dozen pink bouquet roses for the one you love.')"/>
+                <p>$439</p>
+                <button onclick="addToCart('Dozen Pink', 439)">Add to Cart</button>
+                <div class="product-description" id="dozen-pink-description" style="display: none;"></div>
+            </div>
+            <div class="product">
+                <h2>Butterfly Flutterby</h2>
+                <img src="Butterfly Flutterby.jpg" height="200" width="200" alt="Butterfly Flutterby" onclick="showDescription('Butterfly Flutterby', 'A Butterfly Flutterby bouquet filled with vibrant butterflies and flowers!')"/>
+                <p>$799</p>
+                <button onclick="addToCart('Butterfly Flutterby', 799)">Add to Cart</button>
+                <div class="product-description" id="butterfly-flutterby-description" style="display: none;"></div>
+            </div>
+        </section>
+        <button id="checkoutButton" onclick="openCheckout()" style="margin: 20px; display: none;">Checkout</button>
+    </main>
+
+    <section id="checkoutSection" style="display: none; padding: 20px;">
+        <h2>Checkout Summary</h2>
+        <div id="checkoutItems"></div>
+        <div>Total: $<span id="checkoutTotal">0.00</span></div>
+        <button onclick="completeCheckout()">Complete Purchase</button>
+        <button onclick="cancelCheckout()">Cancel</button>
+    </section>
+    
+    <style>
+        body {
+            font-family: cursive;
+            margin: 0;
+            padding: 0;
+            background-color: aquamarine;
+        }
+
+        header {
+            background-color:  #ff77b5;
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .cart {
+            font-size: 18px;
+        }
+
+        .products {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            padding: 20px;
+        }
+
+        .product {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            margin: 10px;
+            text-align: center;
+            width: 200px;
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+
+        button:hover {
+            background-color: #45a049;
+            box-shadow: 0 0 10px 5px rgba(72, 255, 73, 0.7);
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #f1f1f1;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .product-description {
+            padding: 10px;
+            background-color: #f1f1f1;
+            margin-top: 10px;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+    </style>
+
+    <footer>
+        <p>Contact us on Jablong@gmail.com</p>
+    </footer>
+
+    <script>
+        let cartCount = 0;
+        let totalCost = 0;
+        let cartItems = [];
+
+        function addToCart(productName, productPrice) {
+            cartCount++;
+            totalCost += productPrice;
+            cartItems.push({ name: productName, price: productPrice });
+
+            document.getElementById('cartCount').innerText = cartCount;
+            document.getElementById('totalCost').innerText = totalCost.toFixed(2);
+
+            if (cartCount > 0) {
+                document.getElementById('checkoutButton').style.display = 'block';
+            }
+
+            alert(`${productName} added to your cart!`);
+        }
+
+        function openCheckout() {
+            document.querySelector('.cart').style.display = 'none';
+            document.querySelector('.products').style.display = 'none';
+            document.getElementById('checkoutButton').style.display = 'none';
+            document.getElementById('checkoutSection').style.display = 'block';
+
+            let checkoutItemsHTML = cartItems.map(item => `<p>${item.name} - $${item.price}</p>`).join('');
+            document.getElementById('checkoutItems').innerHTML = checkoutItemsHTML;
+            document.getElementById('checkoutTotal').innerText = totalCost.toFixed(2);
+        }
+
+        function completeCheckout() {
+            alert("Thank you for your purchase!");
+            resetCart();
+        }
+
+        function cancelCheckout() {
+            document.getElementById('checkoutSection').style.display = 'none';
+            document.querySelector('.cart').style.display = 'flex';
+            document.querySelector('.products').style.display = 'flex';
+            document.getElementById('checkoutButton').style.display = 'block';
+        }
+
+        function resetCart() {
+            cartCount = 0;
+            totalCost = 0;
+            cartItems = [];
+
+            document.getElementById('cartCount').innerText = cartCount;
+            document.getElementById('totalCost').innerText = totalCost.toFixed(2);
+        }
+
+        function showDescription(productName, description) {
+            const productDescription = document.getElementById(`${productName.toLowerCase().replace(/\s/g, '-')}-description`);
+            productDescription.innerHTML = `<p>${description}</p>`;
+            productDescription.style.display = 'block';
+        }
+    </script>
+</body>
+</html>
